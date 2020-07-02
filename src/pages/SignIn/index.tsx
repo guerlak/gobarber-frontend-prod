@@ -1,7 +1,7 @@
 import React, { useState, useCallback, ChangeEvent } from "react";
 import { FiLogIn, FiMail, FiLock } from "react-icons/fi";
 import * as Yup from "yup";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Container, Content, Background } from "./styles";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
