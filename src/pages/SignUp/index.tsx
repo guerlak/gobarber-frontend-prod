@@ -1,7 +1,7 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, FormEvent } from "react";
 import { FiLogIn, FiMail, FiUser, FiLock } from "react-icons/fi";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Container, Content, Background } from "./styles";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
@@ -20,10 +20,10 @@ const SignUp: React.FC = () => {
 
   const { addToast } = useToast();
 
-  // const formRef = useRef(null);
+  const history = useHistory();
 
   const handleSubmit = useCallback(
-    (e: any) => {
+    (e: FormEvent) => {
       e.preventDefault();
       setUsernameError("");
       setPasswordError("");
@@ -57,6 +57,7 @@ const SignUp: React.FC = () => {
                 type: "success",
                 title: "Registro efetuado com sucesso",
               });
+              history.push("/");
             })
             .catch(() => {
               addToast({
@@ -73,7 +74,7 @@ const SignUp: React.FC = () => {
           setPasswordError(errors.password);
         });
     },
-    [username, email, password, addToast]
+    [username, email, password, addToast, history]
   );
 
   return (

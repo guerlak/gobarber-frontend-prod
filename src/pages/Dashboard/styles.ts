@@ -11,12 +11,13 @@ export const HeaderContent = styled.div`
   margin: 0 auto;
   display: flex;
   align-items: center;
+  position: relative;
 
   > img {
     height: 80px;
   }
 
-  button {
+  > button {
     margin-left: auto;
     background: transparent;
     border: 0;
@@ -26,7 +27,12 @@ export const HeaderContent = styled.div`
       height: 20px;
     }
   }
+
+  @media (max-width: 1200px) {
+    padding: 20px;
+  }
 `;
+
 export const Profile = styled.div`
   display: flex;
   align-items: center;

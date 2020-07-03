@@ -23,6 +23,7 @@ import {
 
 import logo from "../../assets/logo.svg";
 import api from "../../services/api";
+import Modal from "../../components/Modal";
 
 interface MonthAvalabilityItem {
   day: number;
@@ -47,6 +48,7 @@ const Dashboard: React.FC = () => {
     MonthAvalabilityItem[]
   >([]);
   const [appointments, setAppointments] = useState<Appointment[]>([]);
+  const [modalToggle, setModalToggle] = useState(false);
 
   const handleDateChange = useCallback((day: Date, modifiers: DayModifiers) => {
     if (modifiers.available && !modifiers.disabled) {
@@ -102,7 +104,6 @@ const Dashboard: React.FC = () => {
         const date = new Date(year, month, monthDay.day);
         return date;
       });
-
     return dates;
   }, [currentMonth, monthAvailability]);
 
@@ -126,12 +127,15 @@ const Dashboard: React.FC = () => {
     const afternoon = appointments.filter(
       (app) => parseISO(app.date).getHours() >= 12
     );
-
     return {
       morning,
       afternoon,
     };
   }, [appointments]);
+
+  const signOutConfirm = useCallback(() => {
+    setModalToggle(!modalToggle);
+  }, [modalToggle]);
 
   return (
     <Container>
@@ -140,7 +144,10 @@ const Dashboard: React.FC = () => {
           <img src={logo} alt="GoBarber" />
           <Profile>
             <Link to="/profile">
-              <img src={user.avatar_url} alt="Avatar" />
+              <img
+                src={user.avatar_url || "http://place-puppy.com/200x200"}
+                alt="Avatar"
+              />
             </Link>
             <div>
               <span>Bem vindo</span>
@@ -149,9 +156,11 @@ const Dashboard: React.FC = () => {
               </Link>
             </div>
           </Profile>
-          <button type="button" onClick={signOut}>
+
+          <button type="button" onClick={signOutConfirm}>
             <FiPower />
           </button>
+          {modalToggle && <Modal toggle={signOutConfirm} />}
         </HeaderContent>
       </Header>
       <Content>

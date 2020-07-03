@@ -48,18 +48,19 @@ export const AuthProvider: React.FC = ({ children }) => {
 
     const { user, token } = res.data;
     localStorage.setItem("@GoBarber:token", token);
-    localStorage.setItem("@GoBarber:user", JSON.stringify(user));
 
+    localStorage.setItem("@GoBarber:user", JSON.stringify(user));
+    if (!user.avatar_url) {
+      user.avatar_url = "http://place-puppy.com/200x200";
+    }
     api.defaults.headers.authorization = `Bearer ${token}`;
     setData({ token, user });
   }, []);
 
   const signOut = useCallback(() => {
-    if (window.confirm("Quer sair da aplicação?")) {
-      localStorage.removeItem("@GoBarber:token");
-      localStorage.removeItem("@GoBarber:user");
-      setData({} as AuthState);
-    }
+    localStorage.removeItem("@GoBarber:token");
+    localStorage.removeItem("@GoBarber:user");
+    setData({} as AuthState);
   }, []);
 
   const updateUser = useCallback(
