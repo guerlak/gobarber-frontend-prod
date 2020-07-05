@@ -10,11 +10,12 @@ interface User {
   id: string;
   name: string;
   email: string;
-  avatar_url: string;
+  avatar_url: string | "http://place-puppy.com/200x200";
 }
 
 interface AuthContextData {
   user: User;
+  avatarDog: string;
   signIn(credencials: SignInCredencials): Promise<void>;
   signOut(): void;
   updateUser(user: User): void;
@@ -48,11 +49,8 @@ export const AuthProvider: React.FC = ({ children }) => {
 
     const { user, token } = res.data;
     localStorage.setItem("@GoBarber:token", token);
-
     localStorage.setItem("@GoBarber:user", JSON.stringify(user));
-    if (!user.avatar_url) {
-      user.avatar_url = "http://place-puppy.com/200x200";
-    }
+
     api.defaults.headers.authorization = `Bearer ${token}`;
     setData({ token, user });
   }, []);
@@ -76,7 +74,13 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user: data.user, signIn, signOut, updateUser }}
+      value={{
+        avatarDog: "http://place-puppy.com/200x200",
+        user: data.user,
+        signIn,
+        signOut,
+        updateUser,
+      }}
     >
       {children}
     </AuthContext.Provider>

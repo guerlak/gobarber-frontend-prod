@@ -19,7 +19,7 @@ interface ProfileFormdata {
 }
 
 const Profile: React.FC = () => {
-  const { user, updateUser } = useAuth();
+  const { user, updateUser, avatarDog } = useAuth();
   const { addToast } = useToast();
   const [username, setUsername] = useState(user.name);
   const [email, setEmail] = useState(user.email);
@@ -138,7 +138,7 @@ const Profile: React.FC = () => {
       </header>
       <Content>
         <AvatarInput>
-          <img src={user.avatar_url} alt={user.name} />
+          <img src={user.avatar_url || avatarDog} alt={user.name} />
           <label htmlFor="avatar">
             <FiCamera />
             <input type="file" id="avatar" onChange={handleAvatarChange} />

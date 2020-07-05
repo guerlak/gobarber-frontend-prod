@@ -49,7 +49,6 @@ const Dashboard: React.FC = () => {
   >([]);
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [modalToggle, setModalToggle] = useState(false);
-
   const handleDateChange = useCallback((day: Date, modifiers: DayModifiers) => {
     if (modifiers.available && !modifiers.disabled) {
       setSelectedDate(day);
@@ -156,7 +155,6 @@ const Dashboard: React.FC = () => {
               </Link>
             </div>
           </Profile>
-
           <button type="button" onClick={signOutConfirm}>
             <FiPower />
           </button>

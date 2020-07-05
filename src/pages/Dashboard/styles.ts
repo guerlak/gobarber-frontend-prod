@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import { shade } from "polished";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  width: 100%;
+`;
 export const Header = styled.header`
   padding: 32px 0;
   background: "#28262e";
@@ -14,7 +16,7 @@ export const HeaderContent = styled.div`
   position: relative;
 
   > img {
-    height: 80px;
+    height: 5em;
   }
 
   > button {
@@ -28,8 +30,11 @@ export const HeaderContent = styled.div`
     }
   }
 
-  @media (max-width: 1200px) {
+  @media (max-width: 800px) {
     padding: 20px;
+    > img {
+      width: 7em;
+    }
   }
 `;
 
@@ -37,6 +42,14 @@ export const Profile = styled.div`
   display: flex;
   align-items: center;
   margin-left: 80px;
+
+  @media (max-width: 800px) {
+    padding: 20px;
+    margin-left: 15px;
+    > img {
+      width: 7em;
+    }
+  }
 
   img {
     width: 56px;
@@ -72,10 +85,17 @@ export const Content = styled.main`
   margin: 64px auto;
   display: flex;
   padding: 20px;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+    max-width: 780px;
+    margin: 0;
+  }
 `;
 export const Schedule = styled.div`
   flex: 1;
   margin-right: 120px;
+
   h1 {
     font-size: 36px;
   }
@@ -96,6 +116,11 @@ export const Schedule = styled.div`
       border-left: 1px solid #ff9000;
       margin: 0 8px;
     }
+  }
+
+  @media (max-width: 800px) {
+    margin-right: 0px;
+    max-width: 100%;
   }
 `;
 
@@ -210,6 +235,13 @@ export const Appointment = styled.aside`
 export const Calendar = styled.aside`
   width: 380px;
 
+  @media (max-width: 800px) {
+    width: 90%;
+    .DayPicker-Month {
+      width: 0px;
+    }
+  }
+
   DayPicker {
     background: #28262e;
     border-radius: 10px;
@@ -222,6 +254,8 @@ export const Calendar = styled.aside`
   .DayPicker,
   .DayPicker-Month {
     width: 100%;
+    @media (max-width: 800px) {
+    }
   }
 
   .DayPicker-Caption {
@@ -237,6 +271,10 @@ export const Calendar = styled.aside`
   .DayPicker-Day {
     width: 40px;
     height: 40px;
+    @media (max-width: 400px) {
+      width: 20px;
+      height: 20px;
+    }
   }
 
   .DayPicker-Day--available:not(.DayPicker-Day--outside) {
