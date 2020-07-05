@@ -33,6 +33,11 @@ export const Toast = styled.div<ToastProp>`
   padding: 16px 30px 16px 16px;
   border-radius: 10px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 800px) {
+    /* width: 20%; */
+  }
+
   display: flex;
 
   & + div {

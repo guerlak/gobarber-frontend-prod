@@ -49,11 +49,8 @@ const ResetPass: React.FC = () => {
           }
 
           api
-            .post("password/reset", {
+            .post(`password/reset-password?token=${token}`, {
               password: data.password,
-              // eslint-disable-next-line @typescript-eslint/camelcase
-              password_confirmation: data.confirmPassword,
-              token,
             })
             .then(() => {
               addToast({ type: "success", title: "Senha alterada" });

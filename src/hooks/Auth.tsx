@@ -10,7 +10,7 @@ interface User {
   id: string;
   name: string;
   email: string;
-  avatar_url: string | "http://place-puppy.com/200x200";
+  avatar_url: string;
 }
 
 interface AuthContextData {
