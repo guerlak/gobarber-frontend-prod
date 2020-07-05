@@ -88,7 +88,7 @@ export const Content = styled.main`
 
   @media (max-width: 800px) {
     flex-direction: column;
-    max-width: 780px;
+    width: 80%;
     margin: 0;
   }
 `;
